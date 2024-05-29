@@ -27,21 +27,34 @@ class Node{
 typedef tuple<int,Node> Pair;
 
 
-class Heap{
-    public:
-    void insert(Pair par);
-    Pair extactMin();
-    bool isEmpty();
-
-    private:
-    std::vector<Pair> heap;
-    void heapifyDown(int i);
-    void heapifyUp(int i);
+class minHeap{
+private:
+    // Current size of the heap
+    int size;
+    // Max size of heap
+    int capacity;
+    // Store elements as a vector
+    vector<Pair> heap;
+    // Returns the parent index
     int parent(int i);
-    int left_child(int i);
-    int right_child(int i);
+    // Returns the left child
+    int left(int i);
+    // Returns the right child
+    int right(int i);
+
     int decreaseKey();
 
+public:
+    // Constructor
+    minHeap(int capacity);
+    // Insert a key into the min heap
+    void insert(Pair k);
+    // Extracts the minumum element
+    Pair extractMin();
+    // Recursively heapify a sub-tree
+    void heapify(int i);
+    // Print the heap
+    void printHeap();
 };
 
 class cola_fibonacci{
