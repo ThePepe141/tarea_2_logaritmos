@@ -55,7 +55,7 @@ Graph::Graph(int n_v, int n_e){
     for (int j=0; j<border; j++){
         int random1 = random_int(0, n_vertexs-1);
         int random2 = random_int(0, n_vertexs-1);
-        edges[border+j] = Edge(random_decimal(), random1, random2);
+        edges[n_vertexs+j] = Edge(random_decimal(), random1, random2);
     }
     
 }

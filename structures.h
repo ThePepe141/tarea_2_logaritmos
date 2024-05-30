@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<random>
+#include <limits>
 
 using namespace std;
 
@@ -94,6 +95,6 @@ class cola_fibonacci{
 
 };
 
-tuple<vector<int>, vector<int>> dijkstra_fibonacci(Node root, Graph graph);
-tuple<vector<int>, vector<int>> dijkstra_heap(Node root, Graph graph);
+tuple<vector<int>, vector<int>> dijkstra_fibonacci(int root, Graph graph);
+tuple<vector<int>, vector<int>> dijkstra_heap(int root, Graph graph);
 
