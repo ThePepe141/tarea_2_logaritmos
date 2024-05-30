@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdio.h>
 #include <stdlib.h>
+#include<random>
 
 using namespace std;
 
@@ -19,12 +20,31 @@ class Node{
     //funciones
     Node();
     Node(int i);
-    tuple<vector<int>, vector<int>> dijkstra_fibonacci(Node root, vector<Node> vertexs);
-    tuple<vector<int>, vector<int>> dijkstra_heap(Node root, vector<Node> vertexs);
+};
+
+class Edge{
+    public:
+    double weight;
+    int node1;
+    int node2;
+
+    Edge(double w, int n1, int n2);
+};
+
+class Graph{
+    public:
+
+    int n_vertexs;
+    int n_edges;
+
+    vector<int> vertexs;
+    vector<Edge> edges;
+
+    Graph(int n_v, int n_e);
 };
 
 //par: distancia, nodo
-typedef tuple<int,Node> Pair;
+typedef tuple<int,int> Pair;
 
 
 class minHeap{
@@ -67,4 +87,7 @@ class cola_fibonacci{
     int decreaseKey();
 
 };
+
+tuple<vector<int>, vector<int>> dijkstra_fibonacci(Node root, Graph graph);
+tuple<vector<int>, vector<int>> dijkstra_heap(Node root, Graph graph);
 

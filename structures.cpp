@@ -1,13 +1,66 @@
 #include "structures.h"
 
-
-//-----------------Heap-------------------------------------
+//-----------------Node----------------------------------
 Node::Node(){
     key = 0;
-};
+}
 Node::Node(int i){
     key = i;
-};
+}
+//------------------------------------------------------
+//------------------edge---------------------------------
+Edge::Edge(double w, int n1, int n2){
+    weight = w;
+    node1 = n1;
+    node2 = n2;
+}
+//------------------------------------------------------
+//------------------Graph---------------------------------
+/* Generates a random number between [i, j]*/
+int random_int(int i, int j){
+    if (i==j){
+        return i;
+    }
+    else{
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(i, j);
+        return dis(gen);
+    }
+}
+
+/*Generates a random number between (0,1]*/
+double random_decimal(){
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> dis(std::nextafter(0.0, 1.0), 1.0);
+    return dis(gen);
+}
+
+/*Creates a graph with n_v vertexs and n_e edges*/
+Graph::Graph(int n_v, int n_e){
+    n_vertexs = n_v;
+    n_edges = n_e;
+    vertexs.resize(n_vertexs);
+    edges.resize(n_edges);
+    vertexs[0] = 0;
+    //Fill "vertexs" and adds v-1 edges to "edges"
+    for (int i=1; i<n_vertexs; i++){
+        vertexs[i] = i;
+        edges[i-1] = Edge(random_decimal(), i, random_int(i-1, i));
+
+    }
+    //fill the rest of "edges"
+    int border = n_edges-(n_vertexs-1);
+    for (int j=0; j<border; j++){
+        int random1 = random_int(0, n_vertexs-1);
+        int random2 = random_int(0, n_vertexs-1);
+        edges[border+j] = Edge(random_decimal(), random1, random2);
+    }
+    
+}
+//--------------------------------------------------------
+//-----------------Heap-------------------------------------
 minHeap::minHeap(int capacity){
     size = 0;
     this->capacity = capacity;
@@ -43,7 +96,7 @@ void minHeap::insert(Pair k){
 
     // Fix the min heap property
     // Moves the element up until i >= parent or root
-    std::get<0>(heap[i])
+    std::get<0>(heap[i]);
     while(i != 0 && std::get<0>(heap[parent(i)]) > std::get<0>(heap[i])){
         swap(heap[i], heap[parent(i)]);
         i = parent(i);
@@ -76,8 +129,10 @@ Pair minHeap::extractMin(){
     // Check if the heap is empty
     if(size == 0){
         cout << "EMPTY HEAP" << endl;
-        Node node(-1);
-        Pair p(-1,node);
+        //Node node(-1);
+        //Pair p(-1,node);
+        //return p;
+        Pair p(-1, -1);
         return p;
     // Check if there is only 1 element
     }else if(size == 1){
@@ -86,7 +141,7 @@ Pair minHeap::extractMin(){
     // Normal extraction
     }else{
         // Store the root
-        int root = heap[0];
+        Pair root = heap[0];
 
         // Maintain heap shape and then order
         heap[0] = heap[size - 1];

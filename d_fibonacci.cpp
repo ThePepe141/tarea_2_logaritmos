@@ -1,9 +1,9 @@
 #include "structures.h"
 
-tuple<vector<int>, vector<int>> Node::dijkstra_fibonacci(Node root, vector<Node> vertexs){
+tuple<vector<int>, vector<int>> dijkstra_fibonacci(Node root, Graph graph){
 
-    vector<int> distances(vertexs.size(), 0);
-    vector<int> prevs(vertexs.size(), 0);
+    vector<int> distances(graph.n_vertexs, 0);
+    vector<int> prevs(graph.n_vertexs, 0);
 
     return make_tuple(distances, prevs);
 };
