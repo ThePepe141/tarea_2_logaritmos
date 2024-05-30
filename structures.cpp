@@ -61,6 +61,11 @@ Graph::Graph(int n_v, int n_e){
 }
 //--------------------------------------------------------
 //-----------------Heap-------------------------------------
+int minHeap::decreaseKey(int idx, int new_value){
+    get<0>(heap[idx]) = new_value;
+    heapify(idx);
+}
+
 minHeap::minHeap(int capacity){
     size = 0;
     this->capacity = capacity;

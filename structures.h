@@ -28,18 +28,24 @@ class Edge{
     int node1;
     int node2;
 
+    //constructor
     Edge(double w, int n1, int n2);
 };
 
 class Graph{
     public:
 
+    //number of vertexs
     int n_vertexs;
+    //number of edges
     int n_edges;
 
+    //vector of vertexs
     vector<int> vertexs;
+    //vector of edges
     vector<Edge> edges;
 
+    //constructor: n_v vertexs and n_e random edges
     Graph(int n_v, int n_e);
 };
 
@@ -62,7 +68,7 @@ private:
     // Returns the right child
     int right(int i);
 
-    int decreaseKey();
+    int decreaseKey(int idx, int new_value);
 
 public:
     // Constructor
