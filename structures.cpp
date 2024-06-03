@@ -11,8 +11,8 @@ Node::Node(int i){
 //------------------edge---------------------------------
 Edge::Edge(double w, int n1, int n2){
     weight = w;
-    node1 = n1;
-    node2 = n2;
+    node1 = Node(n1);
+    node2 = Node(n2);
 }
 //------------------------------------------------------
 //------------------Graph---------------------------------
@@ -42,25 +42,34 @@ Graph::Graph(int n_v, int n_e){
     n_vertexs = n_v;
     n_edges = n_e;
     vertexs.resize(n_vertexs);
-    edges.resize(n_edges);
     vertexs[0] = 0;
     //Fill "vertexs" and adds v-1 edges to "edges"
     for (int i=1; i<n_vertexs; i++){
-        vertexs[i] = i;
-        edges[i-1] = Edge(random_decimal(), i, random_int(i-1, i));
+        vertexs[i] = Node(i);
+        if (i==1){
+            edges.insert(Edge(random_decimal(), 0, 1));
+        }
+        else{
+            edges.insert(Edge(random_decimal(), random_int(1, i-1), i));
+        }
 
     }
     //fill the rest of "edges"
-    int border = n_edges-(n_vertexs-1);
-    for (int j=0; j<border; j++){
-        int random1 = random_int(0, n_vertexs-1);
-        int random2 = random_int(0, n_vertexs-1);
-        edges[n_vertexs+j] = Edge(random_decimal(), random1, random2);
-    }
-    
+    while (edges.size() < n_edges) {
+        int u = std::rand() % n_vertexs;
+        int v = std::rand() % n_vertexs;
+
+        if (u != v) { // make sure therea re not (u,u)
+            // make sure there are not (u,v) and (v,u)
+            Edge edge = u < v ? Edge(random_decimal(), u, v) : Edge(random_decimal(), v, u);
+            if (edges.find(edge) == edges.end()) {
+                edges.insert(edge);
+            }
+        }
+    }    
 }
 //--------------------------------------------------------
-//-----------------Heap-------------------------------------
+//-----------------Heap-----------------------------------
 int minHeap::decreaseKey(int idx, int new_value){
     get<0>(heap[idx]) = new_value;
     heapify(idx);
@@ -134,11 +143,11 @@ Pair minHeap::extractMin(){
     // Check if the heap is empty
     if(size == 0){
         cout << "EMPTY HEAP" << endl;
-        //Node node(-1);
-        //Pair p(-1,node);
-        //return p;
-        Pair p(-1, -1);
+        Node node(-1);
+        Pair p(-1,node);
         return p;
+        //Pair p(-1, -1);
+        //return p;
     // Check if there is only 1 element
     }else if(size == 1){
         size--;

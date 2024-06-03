@@ -6,8 +6,10 @@
 #include <algorithm>
 #include <stdio.h>
 #include <stdlib.h>
-#include<random>
+#include <random>
 #include <limits>
+#include <set>
+#include <ctime>
 
 using namespace std;
 
@@ -15,8 +17,10 @@ class Node{
     public:
 
     //varaibles
-    int key;
+    int key = -1;
+    tuple<int, Node> *rep; // = &(make_tuple(0, Node()));
     bool explored = false;
+
 
     //funciones
     Node();
@@ -26,8 +30,8 @@ class Node{
 class Edge{
     public:
     double weight;
-    int node1;
-    int node2;
+    Node node1;
+    Node node2;
 
     //constructor
     Edge(double w, int n1, int n2);
@@ -42,17 +46,16 @@ class Graph{
     int n_edges;
 
     //vector of vertexs
-    vector<int> vertexs;
+    vector<Node> vertexs;
     //vector of edges
-    vector<Edge> edges;
+    set<Edge> edges;
 
     //constructor: n_v vertexs and n_e random edges
     Graph(int n_v, int n_e);
 };
 
 //par: distancia, nodo
-typedef tuple<int,int> Pair;
-
+typedef tuple<int,Node> Pair;
 
 class minHeap{
 private:
@@ -95,6 +98,6 @@ class cola_fibonacci{
 
 };
 
-tuple<vector<int>, vector<int>> dijkstra_fibonacci(int root, Graph graph);
-tuple<vector<int>, vector<int>> dijkstra_heap(int root, Graph graph);
+tuple<vector<int>, vector<Node>> dijkstra_fibonacci(int root, Graph graph);
+tuple<vector<int>, vector<Node>> dijkstra_heap(int root, Graph graph);
 
