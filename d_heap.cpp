@@ -36,16 +36,18 @@ tuple<vector<int>, vector<Node>> dijkstra_heap(Node root, Graph graph){
         if (edge.node1 == root){
             Pair p = *edge.node2.rep;
             get<0>(p) = edge.weight;
-            edgeToRemove = Edge(edge.weight, edge.node1 ,edge.node2);
-            edge.erase(edgeToRemove)
+            Edge edgeToRemove = Edge(edge.weight, edge.node1 ,edge.node2);
+            edge.erase(edgeToRemove);
         }
         if (edge.node2 == root){
             Pair p = *edge.node1.rep;
             get<0>(p) = edge.weight;
+            Edge edgeToRemove = Edge(edge.weight, edge.node1 ,edge.node2);
+            edge.erase(edgeToRemove);
         }
     }
     for (int i = 0; i< graph.n_edges; i++){
-        if (graph.edges){
+        if{
         }
     }
 
