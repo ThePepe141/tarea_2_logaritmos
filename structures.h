@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include<random>
 #include <limits>
+#include <set>
 
 using namespace std;
 
@@ -23,31 +24,29 @@ class Node{
     Node(int i);
 };
 
-class Edge{
-    public:
+struct Edge{
     double weight;
     int node1;
     int node2;
-
-    //constructor
-    Edge(double w, int n1, int n2);
 };
 
 class Graph{
     public:
-
     //number of vertexs
     int n_vertexs;
     //number of edges
     int n_edges;
-
     //vector of vertexs
     vector<int> vertexs;
     //vector of edges
     vector<Edge> edges;
+    //set of edges
+    set<int,int> list_edges;
 
     //constructor: n_v vertexs and n_e random edges
-    Graph(int n_v, int n_e);
+    Graph createGrahp(int n_v, int n_e);
+
+    void addEdge(Graph &g, int x, int y, double w);
 };
 
 //par: distancia, nodo

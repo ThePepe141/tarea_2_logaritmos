@@ -9,7 +9,6 @@ tuple<vector<int>, vector<int>> dijkstra_heap(int root, Graph graph){
 
     //create Q (heap)
     minHeap heap(graph.n_vertexs);
- 
     distances[0] = 0;
     prevs[0]  = -1;
     heap.insert(make_tuple(0, -1));

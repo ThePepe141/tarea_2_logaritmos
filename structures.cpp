@@ -24,40 +24,56 @@ int random_int(int i, int j){
     else{
         random_device rd;
         mt19937 gen(rd());
-        uniform_int_distribution<> dis(i, j);
-        return dis(gen);
+        uniform_int_distribution<> distr(i, j);
+        return distr(gen);
     }
 }
 
 /*Generates a random number between (0,1]*/
 double random_decimal(){
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_real_distribution<> dis(std::nextafter(0.0, 1.0), 1.0);
-    return dis(gen);
+    random_device rd; // obtain a random number from hardware
+    mt19937 gen(rd()); // seed the generator
+    uniform_real_distribution<double> distr(0, 1); // define the range
+    return distr(gen);
 }
-
+Graph::addEdge(Graph g, int x, int y, double w){
+    int size = g.list_edges.size();
+    if (x > y){
+        swap(x, y);
+    }
+    g.list_edges.insert(make_pair(x, y));
+    
+    if (g.list_edges.size() == size){
+        return
+    }
+    g.edges.push_back({x,y,w});
+    g.edges.push_back({y,x,w});
+}
 /*Creates a graph with n_v vertexs and n_e edges*/
-Graph::Graph(int n_v, int n_e){
-    n_vertexs = n_v;
-    n_edges = n_e;
-    vertexs.resize(n_vertexs);
-    edges.resize(n_edges);
-    vertexs[0] = 0;
+Graph::createGrahp(int n_v, int n_e){
+    n_vertexs = pow(2, n_v);
+    n_edges = pow(2, n_e);
+    //vertexs.resize(n_vertexs);
+    //edges.resize(n_edges);
+    //vertexs[0] = 0;
+    Graph g;
     //Fill "vertexs" and adds v-1 edges to "edges"
     for (int i=1; i<n_vertexs; i++){
-        vertexs[i] = i;
-        edges[i-1] = Edge(random_decimal(), i, random_int(i-1, i));
-
+        int u = random_int(0, i-1);
+        double weight = random_decimal();
+        addEdge(g, u, i, weight);
     }
     //fill the rest of "edges"
-    int border = n_edges-(n_vertexs-1);
-    for (int j=0; j<border; j++){
-        int random1 = random_int(0, n_vertexs-1);
-        int random2 = random_int(0, n_vertexs-1);
-        edges[n_vertexs+j] = Edge(random_decimal(), random1, random2);
+    while(g.list_edges.size() < n_edges){
+        int u = random_int(0, n_vertexs);
+        int v = random_int(0, n_vertexs);
+        double weight = random_decimal();
+        while(u == v){
+            v = random_int(0, n_vertexs);
+        }
+        addEdge(g, u, v, weight);
     }
-    
+    return g;
 }
 //--------------------------------------------------------
 //-----------------Heap-------------------------------------
@@ -155,6 +171,11 @@ Pair minHeap::extractMin(){
 
         // Return min element
         return root;
+    }
+}
+void printGraph(Graph &g){
+    for(Edge e: g.edges){
+        cout << e.node1 << " " << e.node2 << " " << e.weight << endl;
     }
 }
 
