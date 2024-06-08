@@ -1,4 +1,3 @@
-# tarea_2_logaritmos
 # Algoritmo de Dijkstra con Colas de Fibonacci
 
 Este proyecto implementa y evalúa experimentalmente el algoritmo de Dijkstra utilizando colas de Fibonacci para encontrar el camino más corto en un grafo no dirigido y con pesos positivos. El objetivo principal es comparar el rendimiento empírico del algoritmo con su complejidad teórica.
