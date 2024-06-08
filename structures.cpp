@@ -8,13 +8,6 @@ Node::Node(int i){
     key = i;
 }
 //------------------------------------------------------
-//------------------edge---------------------------------
-Edge::Edge(double w, int n1, int n2){
-    weight = w;
-    node1 = n1;
-    node2 = n2;
-}
-//------------------------------------------------------
 //------------------Graph---------------------------------
 /* Generates a random number between [i, j]*/
 int random_int(int i, int j){
@@ -36,7 +29,7 @@ double random_decimal(){
     uniform_real_distribution<double> distr(0, 1); // define the range
     return distr(gen);
 }
-Graph::addEdge(Graph g, int x, int y, double w){
+void addEdge(Graph &g, int x, int y, double w){
     int size = g.list_edges.size();
     if (x > y){
         swap(x, y);
@@ -44,18 +37,16 @@ Graph::addEdge(Graph g, int x, int y, double w){
     g.list_edges.insert(make_pair(x, y));
     
     if (g.list_edges.size() == size){
-        return
+        return;
     }
     g.edges.push_back({x,y,w});
     g.edges.push_back({y,x,w});
 }
 /*Creates a graph with n_v vertexs and n_e edges*/
-Graph::createGrahp(int n_v, int n_e){
-    n_vertexs = pow(2, n_v);
-    n_edges = pow(2, n_e);
-    //vertexs.resize(n_vertexs);
-    //edges.resize(n_edges);
-    //vertexs[0] = 0;
+Graph createGraph(int i, int j){
+    int n_vertexs = 1 << i;
+    int n_edges = 1 << j;
+
     Graph g;
     //Fill "vertexs" and adds v-1 edges to "edges"
     for (int i=1; i<n_vertexs; i++){
@@ -77,7 +68,7 @@ Graph::createGrahp(int n_v, int n_e){
 }
 //--------------------------------------------------------
 //-----------------Heap-------------------------------------
-int minHeap::decreaseKey(int idx, int new_value){
+void minHeap::decreaseKey(int idx, int new_value){
     get<0>(heap[idx]) = new_value;
     heapify(idx);
 }

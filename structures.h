@@ -25,30 +25,19 @@ class Node{
 };
 
 struct Edge{
-    double weight;
     int node1;
     int node2;
+    double weight;
 };
 
-class Graph{
-    public:
-    //number of vertexs
-    int n_vertexs;
-    //number of edges
-    int n_edges;
-    //vector of vertexs
-    vector<int> vertexs;
-    //vector of edges
+struct Graph{
     vector<Edge> edges;
-    //set of edges
-    set<int,int> list_edges;
-
-    //constructor: n_v vertexs and n_e random edges
-    Graph createGrahp(int n_v, int n_e);
-
-    void addEdge(Graph &g, int x, int y, double w);
+    set<pair<int,int>> list_edges;
 };
 
+Graph createGraph(int n_v, int n_e);
+
+void addEdge(Graph &g, int x, int y, double w);
 //par: distancia, nodo
 typedef tuple<int,int> Pair;
 
@@ -68,7 +57,7 @@ private:
     // Returns the right child
     int right(int i);
 
-    int decreaseKey(int idx, int new_value);
+    void decreaseKey(int idx, int new_value);
 
 public:
     // Constructor

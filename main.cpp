@@ -1,15 +1,17 @@
 #include "structures.cpp"
+using namespace std;
 
 int main(){
-    println("Ingrese el número de vértices y aristas del grafo");
+    cout<<"Ingrese el número de vértices y aristas del grafo \n";
     int i,j;
-    println("numero de vertices 2^i");
-    println("numero de aristas 2^j");
-    println("i: ");
+    cout<<"numero de vertices 2^i \n";
+    cout<<"numero de aristas 2^j \n";
+    cout<<"i: \n";
     cin >> i;
-    println("j: ");
+    cout<<"j: \n";
     cin >> j;
-    auto inicio = chrono::high_resolution_clock::now();
-    Graph g = generateGraph(i,j);
+    
+    Graph g = createGraph(i,j);
+    printGraph(g);
     return 0;
 }
