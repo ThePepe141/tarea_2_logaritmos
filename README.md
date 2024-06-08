@@ -89,10 +89,10 @@ El archivo `execution_times.csv` contiene los resultados de las pruebas. Para an
 ## Resultados Obtenidos Fibonacci
 
 ### Comparación Empírica y Teórica para v = 1024
-![Comparación Empírica y Teórica para v = 1024](execution_time_v_1024.png)
+![Comparación Empírica y Teórica para v = 1024](Fibonacci/Graficos/execution_time_fib_v_1024.png)
 
 ### Comparación Empírica y Teórica para v = 4096
-![Comparación Empírica y Teórica para v = 4096](execution_time_v_4096.png)
+![Comparación Empírica y Teórica para v = 4096](Fibonacci/Graficos/execution_time_fib_v_4096.png)
 
 ### Comparación Empírica y Teórica para v = 16384
-![Comparación Empírica y Teórica para v = 16384](execution_time_v_16384.png)
+![Comparación Empírica y Teórica para v = 16384](Fibonacci/Graficos/execution_time_fib_v_16384.png)
