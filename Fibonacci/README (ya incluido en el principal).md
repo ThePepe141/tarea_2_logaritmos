@@ -1,4 +1,3 @@
-# tarea_2_logaritmos
 # Algoritmo de Dijkstra con Colas de Fibonacci
 
 Este proyecto implementa y evalúa experimentalmente el algoritmo de Dijkstra utilizando colas de Fibonacci para encontrar el camino más corto en un grafo no dirigido y con pesos positivos. El objetivo principal es comparar el rendimiento empírico del algoritmo con su complejidad teórica.
@@ -89,10 +88,10 @@ El archivo `execution_times.csv` contiene los resultados de las pruebas. Para an
 ## Resultados Obtenidos Fibonacci
 
 ### Comparación Empírica y Teórica para v = 1024
-![Comparación Empírica y Teórica para v = 1024](Fibonacci/Graficos/execution_time_fib_v_1024.png)
+![Comparación Empírica y Teórica para v = 1024](execution_time_v_1024.png)
 
 ### Comparación Empírica y Teórica para v = 4096
-![Comparación Empírica y Teórica para v = 4096](Fibonacci/Graficos/execution_time_fib_v_4096.png)
+![Comparación Empírica y Teórica para v = 4096](execution_time_v_4096.png)
 
 ### Comparación Empírica y Teórica para v = 16384
-![Comparación Empírica y Teórica para v = 16384](Fibonacci/Graficos/execution_time_fib_v_16384.png)
+![Comparación Empírica y Teórica para v = 16384](execution_time_v_16384.png)

@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <stdio.h>
 #include <stdlib.h>
-#include<random>
+#include <random>
 #include <limits>
 #include <set>
 
@@ -16,8 +16,10 @@ class Node{
     public:
 
     //varaibles
-    int key;
+    int key = -1;
+    tuple<int, Node> *rep; // = &(make_tuple(0, Node()));
     bool explored = false;
+
 
     //funciones
     Node();
@@ -39,8 +41,7 @@ Graph createGraph(int n_v, int n_e);
 
 void addEdge(Graph &g, int x, int y, double w);
 //par: distancia, nodo
-typedef tuple<int,int> Pair;
-
+typedef tuple<int,Node> Pair;
 
 class minHeap{
 private:
@@ -83,6 +84,6 @@ class cola_fibonacci{
 
 };
 
-tuple<vector<int>, vector<int>> dijkstra_fibonacci(int root, Graph graph);
-tuple<vector<int>, vector<int>> dijkstra_heap(int root, Graph graph);
+tuple<vector<int>, vector<Node>> dijkstra_fibonacci(int root, Graph graph);
+tuple<vector<int>, vector<Node>> dijkstra_heap(int root, Graph graph);
 

@@ -141,11 +141,11 @@ Pair minHeap::extractMin(){
     // Check if the heap is empty
     if(size == 0){
         cout << "EMPTY HEAP" << endl;
-        //Node node(-1);
-        //Pair p(-1,node);
-        //return p;
-        Pair p(-1, -1);
+        Node node(-1);
+        Pair p(-1,node);
         return p;
+        //Pair p(-1, -1);
+        //return p;
     // Check if there is only 1 element
     }else if(size == 1){
         size--;
