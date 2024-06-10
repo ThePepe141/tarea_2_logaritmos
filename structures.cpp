@@ -56,8 +56,8 @@ Graph createGraph(int i, int j){
     }
     //fill the rest of "edges"
     while(g.list_edges.size() < n_edges){
-        int u = random_int(0, n_vertexs);
-        int v = random_int(0, n_vertexs);
+        int u = random_int(0, n_vertexs-1);
+        int v = random_int(0, n_vertexs-1);
         double weight = random_decimal();
         while(u == v){
             v = random_int(0, n_vertexs);
