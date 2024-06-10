@@ -60,7 +60,7 @@ Graph createGraph(int i, int j){
         int v = random_int(0, n_vertexs-1);
         double weight = random_decimal();
         while(u == v){
-            v = random_int(0, n_vertexs);
+            v = random_int(0, n_vertexs-1);
         }
         addEdge(g, u, v, weight);
     }
