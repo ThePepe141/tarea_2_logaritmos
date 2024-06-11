@@ -1,4 +1,4 @@
-#include "structures.h"
+#include "structuresfib.h"
 #include <queue>
 
 namespace GraphStructure {
