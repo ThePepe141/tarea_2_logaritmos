@@ -41,7 +41,7 @@ Graph createGraph(int n_v, int n_e);
 
 void addEdge(Graph &g, int x, int y, double w);
 //par: distancia, nodo
-typedef tuple<int,Node> Pair;
+typedef tuple<double,Node> Pair;
 
 class minHeap{
 private:
@@ -69,6 +69,8 @@ public:
     Pair extractMin();
     // Recursively heapify a sub-tree
     void heapify(int i);
+    //Recursively moves an element up, if needed
+    void heapifyUp(int i);
     // Print the heap
     void printHeap();
 };

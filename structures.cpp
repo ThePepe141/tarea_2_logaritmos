@@ -76,7 +76,6 @@ void minHeap::decreaseKey(int idx, int new_value){
 minHeap::minHeap(int capacity){
     size = 0;
     this->capacity = capacity;
-    heap.resize(capacity);
 }
 
 int minHeap::parent(int i){
@@ -103,15 +102,24 @@ void minHeap::insert(Pair k){
     size++;
 
     // Insert the new key at the end
-    int i = size - 1;
-    heap[i] = k;
+    heap.push_back(k);
 
     // Fix the min heap property
     // Moves the element up until i >= parent or root
-    std::get<0>(heap[i]);
-    while(i != 0 && std::get<0>(heap[parent(i)]) > std::get<0>(heap[i])){
-        swap(heap[i], heap[parent(i)]);
-        i = parent(i);
+    int place = size - 1;
+    while(place != 0 && std::get<0>(heap[parent(place)]) > std::get<0>(heap[place])){
+        swap(heap[place], heap[parent(place)]);
+        place = parent(place);
+    }
+}
+
+void minHeap::heapifyUp(int i){
+    if (i!=0){
+        int dad = parent(i);
+        if (dad >=0 && get<0>(heap[dad]) > get<0>(heap[i])){
+            swap(heap[dad], heap[i]);
+            heapifyUp(dad);
+        }
     }
 }
 
@@ -142,7 +150,7 @@ Pair minHeap::extractMin(){
     if(size == 0){
         cout << "EMPTY HEAP" << endl;
         Node node(-1);
-        Pair p(-1,node);
+        Pair p(-1.0,node);
         return p;
         //Pair p(-1, -1);
         //return p;
@@ -156,7 +164,9 @@ Pair minHeap::extractMin(){
         Pair root = heap[0];
 
         // Maintain heap shape and then order
-        heap[0] = heap[size - 1];
+        //heap[0] = heap[size - 1];
+        swap(heap[0], heap[size-1]);
+        heap.pop_back();
         size--;
         heapify(0);
 
