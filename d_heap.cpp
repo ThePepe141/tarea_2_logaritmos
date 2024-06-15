@@ -4,11 +4,14 @@
 tuple<vector<int>, vector<Node>> dijkstra_heap(Node root, Graph graph){
 
     //1 create distances[] and prevs[]
-    vector<int> distances(graph.n_vertexs, 0);
-    vector<Node> prevs(graph.n_vertexs, 0);
+    vector<int> distances(graph.n_v, 0);
+    vector<Node> prevs(graph.n_v, 0);
+
+    //vector with nodes
+    vector<Node> nodes;
 
     //2- create Q (heap)
-    minHeap heap(graph.n_vertexs);
+    minHeap heap(graph.n_v);
 
     distances[0] = 0;
     prevs[0]  = -1;
@@ -19,16 +22,19 @@ tuple<vector<int>, vector<Node>> dijkstra_heap(Node root, Graph graph){
     int aux = 1;
 
     //4 y 5- fill heap
-    for (int i=0; i<graph.n_vertexs; i++){
-        if (graph.vertexs[i].key!= root.key){
+    for (int i=0; i<graph.n_v; i++){
+        if (i != root.key){
             distances[i+aux] = inf;
             prevs[i+aux] = -2;
-            Pair the_pair = make_tuple(inf,graph.vertexs[i]);
-            graph.vertexs[i].rep = &the_pair;
+            Node node_i = Node(i);
+            Pair the_pair = make_tuple(inf,node_i);
+            node_i.rep = &the_pair;
+            nodes.push_back(node_i);
             heap.insert(the_pair);
         }
         else{
             aux = 0;
+            nodes.push_back(root);
         }
     }
     // search for the edge that conects the root with other vertex and change the distance

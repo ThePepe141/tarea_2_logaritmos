@@ -17,7 +17,7 @@ class Node{
 
     //varaibles
     int key = -1;
-    tuple<int, Node> *rep; // = &(make_tuple(0, Node()));
+    tuple<double, Node> *rep; // = &(make_tuple(0, Node()));
     bool explored = false;
 
 
@@ -34,6 +34,7 @@ struct Edge{
 
 struct Graph{
     vector<Edge> edges;
+    int n_v;
     set<pair<int,int>> list_edges;
 };
 

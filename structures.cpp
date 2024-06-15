@@ -48,6 +48,7 @@ Graph createGraph(int i, int j){
     int n_edges = 1 << j;
 
     Graph g;
+    g.n_v = n_vertexs;
     //Fill "vertexs" and adds v-1 edges to "edges"
     for (int i=1; i<n_vertexs; i++){
         int u = random_int(0, i-1);
