@@ -19,6 +19,7 @@ class Node{
     int key = -1;
     tuple<double, Node> *rep; // = &(make_tuple(0, Node()));
     bool explored = false;
+    int heap_place = -1;
 
 
     //funciones
@@ -59,8 +60,6 @@ private:
     // Returns the right child
     int right(int i);
 
-    void decreaseKey(int idx, int new_value);
-
 public:
     // Constructor
     minHeap(int capacity);
@@ -74,6 +73,10 @@ public:
     void heapifyUp(int i);
     // Print the heap
     void printHeap();
+    //decrease the distance value of the element in idx to new_value
+    void decreaseKey(int idx, int new_value);
+    //bool to know if the heap is empty
+    bool empty();
 };
 
 class cola_fibonacci{

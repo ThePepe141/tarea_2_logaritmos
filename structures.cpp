@@ -69,16 +69,6 @@ Graph createGraph(int i, int j){
 }
 //--------------------------------------------------------
 //-----------------Heap-------------------------------------
-void minHeap::decreaseKey(int idx, int new_value){
-    get<0>(heap[idx]) = new_value;
-    heapify(idx);
-}
-
-minHeap::minHeap(int capacity){
-    size = 0;
-    this->capacity = capacity;
-}
-
 int minHeap::parent(int i){
     return (i - 1) / 2;
 }
@@ -89,6 +79,11 @@ int minHeap::left(int i){
 
 int minHeap::right(int i){
     return 2 * i + 2;
+}
+
+minHeap::minHeap(int capacity){
+    size = 0;
+    this->capacity = capacity;
 }
 
 // Insert key into the minHeap
@@ -103,24 +98,51 @@ void minHeap::insert(Pair k){
     size++;
 
     // Insert the new key at the end
+    int place = size - 1;
+    get<1>(k).heap_place = place;
     heap.push_back(k);
 
     // Fix the min heap property
     // Moves the element up until i >= parent or root
-    int place = size - 1;
     while(place != 0 && std::get<0>(heap[parent(place)]) > std::get<0>(heap[place])){
+        //change the heap_place values of the nodes
+        int to_mod = get<1>(heap[parent(place)]).heap_place;
+        get<1>(heap[place]).heap_place = to_mod;
+        get<1>(heap[parent(place)]).heap_place = place;
+        //swap the pairs
         swap(heap[place], heap[parent(place)]);
         place = parent(place);
     }
 }
 
-void minHeap::heapifyUp(int i){
-    if (i!=0){
-        int dad = parent(i);
-        if (dad >=0 && get<0>(heap[dad]) > get<0>(heap[i])){
-            swap(heap[dad], heap[i]);
-            heapifyUp(dad);
-        }
+// Removes the smallest element and fixes the order
+Pair minHeap::extractMin(){
+    // Check if the heap is empty
+    if(size == 0){
+        throw std::runtime_error("The minHeap is empty");
+    // Check if there is only 1 element
+    }else if(size == 1){
+        size--;
+        get<1>(heap[0]).heap_place = -1;
+        Pair root = heap[0];
+        heap.pop_back();
+        return root;
+    // Normal extraction
+    }else{
+        // Store the root
+        get<1>(heap[0]).heap_place = -1;
+        Pair root = heap[0];
+
+        // Maintain heap shape and then order
+        //heap[0] = heap[size - 1];
+        get<1>(heap[size-1]).heap_place = 0;
+        swap(heap[0], heap[size-1]);
+        heap.pop_back();
+        size--;
+        heapify(0);
+
+        // Return min element
+        return root;
     }
 }
 
@@ -140,41 +162,43 @@ void minHeap::heapify(int i){
 
     // If the smallest of l or r, continue heapify
     if(smallest != i){
+        //change the heap_place values of the nodes
+        int to_mod = get<1>(heap[smallest]).heap_place;
+        get<1>(heap[i]).heap_place = to_mod;
+        get<1>(heap[smallest]).heap_place = i;
+        //swap the nodes
         swap(heap[i], heap[smallest]);
         heapify(smallest);
     }
 }
 
-// Removes the smallest element and fixes the order
-Pair minHeap::extractMin(){
-    // Check if the heap is empty
-    if(size == 0){
-        cout << "EMPTY HEAP" << endl;
-        Node node(-1);
-        Pair p(-1.0,node);
-        return p;
-        //Pair p(-1, -1);
-        //return p;
-    // Check if there is only 1 element
-    }else if(size == 1){
-        size--;
-        return heap[0];
-    // Normal extraction
-    }else{
-        // Store the root
-        Pair root = heap[0];
-
-        // Maintain heap shape and then order
-        //heap[0] = heap[size - 1];
-        swap(heap[0], heap[size-1]);
-        heap.pop_back();
-        size--;
-        heapify(0);
-
-        // Return min element
-        return root;
+void minHeap::heapifyUp(int i){
+    if (i!=0){
+        int dad = parent(i);
+        if (dad >=0 && get<0>(heap[dad]) > get<0>(heap[i])){
+            //change the heap_place values of the nodes
+            int to_mod = get<1>(heap[parent(dad)]).heap_place;
+            get<1>(heap[i]).heap_place = to_mod;
+            get<1>(heap[dad]).heap_place = i;
+            //swap the nodes
+            swap(heap[dad], heap[i]);
+            heapifyUp(dad);
+        }
     }
 }
+
+void minHeap::decreaseKey(int idx, int new_value){
+    if (get<0>(heap[idx]) > new_value){
+        get<0>(heap[idx]) = new_value;
+        heapifyUp(idx);
+    }
+}
+
+bool minHeap::empty(){
+    return size==0;
+}
+
+//----------------------------------------------------
 void printGraph(Graph &g){
     for(Edge e: g.edges){
         cout << e.node1 << " " << e.node2 << " " << e.weight << endl;
