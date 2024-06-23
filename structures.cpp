@@ -30,17 +30,20 @@ double random_decimal(){
     return distr(gen);
 }
 void addEdge(Graph &g, int x, int y, double w){
-    int size = g.list_edges.size();
+    int min;
+    int max;
     if (x > y){
-        swap(x, y);
+        max = x;
+        min = y;
     }
-    g.list_edges.insert(make_pair(x, y));
-    
-    if (g.list_edges.size() == size){
-        return;
+    else{
+        max=y;
+        min=x;
     }
-    g.edges.push_back({x,y,w});
-    g.edges.push_back({y,x,w});
+    g.list_edges.insert(make_tuple(min, max, w));
+    //g.list_edges.insert(make_pair(min, max));
+    //g.edges.push_back({min,max,w});
+    //g.edges.push_back({y,x,w});
 }
 /*Creates a graph with n_v vertexs and n_e edges*/
 Graph createGraph(int i, int j){
@@ -199,12 +202,13 @@ bool minHeap::empty(){
 }
 
 //----------------------------------------------------
+/*
 void printGraph(Graph &g){
     for(Edge e: g.edges){
         cout << e.node1 << " " << e.node2 << " " << e.weight << endl;
     }
 }
-
+*/
 
 //----------------------------------------------------------------
 //---------------cola Fibonacci-----------------------------------

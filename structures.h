@@ -34,9 +34,10 @@ struct Edge{
 };
 
 struct Graph{
-    vector<Edge> edges;
+    //vector<Edge> edges;
     int n_v;
-    set<pair<int,int>> list_edges;
+    //set<pair<int,int>> list_edges;
+    set<tuple<int, int, double>> list_edges;
 };
 
 Graph createGraph(int n_v, int n_e);
@@ -91,5 +92,5 @@ class cola_fibonacci{
 };
 
 tuple<vector<int>, vector<Node>> dijkstra_fibonacci(int root, Graph graph);
-tuple<vector<int>, vector<Node>> dijkstra_heap(int root, Graph graph);
+tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph);
 
