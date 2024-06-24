@@ -8,9 +8,13 @@ Este proyecto implementa y evalúa experimentalmente el algoritmo de Dijkstra ut
 El repositorio contiene los siguientes archivos:
 
 - `FibonacciHeap.h` y `FibonacciHeap.cpp`: Implementación de la cola de Fibonacci.
+- `main.cpp`: implementa el algoritmo de dijkstra utilizando min heap.
+- `d_heap.cpp`: Implementación de un heap.
 - `structures.h` y `structures.cpp`: Implementación de la estructura de grafo y utilidades relacionadas.
+- `structuresfib.h` y `structuresfib.cpp`: Implementación de la estructura de grafo y utilidades relacionadas para FibonacciHeap.
 - `d_fibonacci.cpp`: Implementación del algoritmo de Dijkstra utilizando colas de Fibonacci y generación de grafos.
 - `execution_times.csv`: Archivo CSV con los tiempos de ejecución de las pruebas realizadas.
+- `Makefile`: un makefile para compilar los archivos
 
 ## Archivos y Descripción
 
@@ -56,23 +60,20 @@ Este archivo contiene los resultados de las pruebas realizadas, con los tiempos 
 - Compilador de C++ (e.g., g++)
 - Biblioteca estándar de C++
 
-### Compilación
-
-Para compilar el proyecto, usa el siguiente comando:
-
-```sh
-g++ -g -Wall -o dijkstra_fib d_fibonacci.cpp FibonacciHeap.cpp structures.cpp -std=c++11
-```
-
-### Ejecución
+### Compilación y Ejecución
 
 Para ejecutar el programa, usa el siguiente comando:
 
 ```sh
-./dijkstra_fib
+makefib
+```
+El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando colas de Fibonacci, y registrará los tiempos de ejecución.
+
+```sh
+makeheap
 ```
 
-El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando colas de Fibonacci, y registrará los tiempos de ejecución.
+El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando minheap, y registrará los tiempos de ejecución.
 
 ### Análisis de Resultados
 
