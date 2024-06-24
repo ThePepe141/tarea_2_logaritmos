@@ -5,7 +5,7 @@
 #include <fstream>
 #include <numeric>
 #include "FibonacciHeap.h"
-#include "structures.h"
+#include "structuresfib.h"
 
 using namespace std;
 using namespace FibonacciHeapStructure;
