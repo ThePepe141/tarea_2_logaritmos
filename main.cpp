@@ -1,9 +1,15 @@
-#include "structures.cpp"
+#include <iostream>
+#include <vector>
+#include <limits>
+#include <chrono>
+#include <fstream>
+#include <numeric>
+#include "d_heap.cpp"
 using namespace std;
 
 int main() {
-    vector<int> v_values = {1 << 10, 1 << 12, 1 << 14};
-    vector<int> e_values = {1 << 16, 1 << 17, 1 << 18, 1 << 19, 1 << 20, 1 << 21, 1 << 22};
+    vector<int> v_values = {10, 12, 14};
+    vector<int> e_values = {16, 17, 18, 19, 20,  21, 22};
     int grafnumber;
     cout<<"Ingrese el número de grafos: \n";
     cin >> grafnumber;
@@ -20,7 +26,9 @@ int main() {
                 Graph g = createGraph(v,e);
 
                 auto start = chrono::high_resolution_clock::now();
-                dijkstraFibonacci(graph, 0);
+                cout << "probemos dijkstra" << endl;
+                dijkstra_heap(0, g);
+                cout << "dijkstra funciona" << endl;
                 auto end = chrono::high_resolution_clock::now();
                 chrono::duration<double> duration = end - start;
                 execution_times.push_back(duration.count());
@@ -36,7 +44,7 @@ int main() {
     return 0;
 }
 
-"""
+/*
 int main(){
     cout<<"Ingrese el número de vértices y aristas del grafo \n";
     int i,j;
@@ -48,7 +56,7 @@ int main(){
     cin >> j;
     
     Graph g = createGraph(i,j);
-    printGraph(g);
+    cout << "grafo creado" << endl;
     return 0;
 }
-"""
+*/

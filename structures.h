@@ -80,17 +80,6 @@ public:
     bool empty();
 };
 
-class cola_fibonacci{
 
-    int insert();
-    int findMin();
-    int heapify();
-    int merge();
-    int extractMin();
-    int decreaseKey();
-
-};
-
-tuple<vector<int>, vector<Node>> dijkstra_fibonacci(int root, Graph graph);
 tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph);
 
