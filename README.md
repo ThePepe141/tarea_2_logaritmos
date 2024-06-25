@@ -29,7 +29,7 @@ Este archivo define las estructuras necesarias para representar grafos y aristas
 - `addEdge`: operación que agrega un Edge al grafo.
 - `minHeap`: una clase que implementa las siguientes operaciones
 
-## minHeap
+### minHeap
 - `minHeap(int capacity)`: Constructor, crea un minHeap.
 - `insert(Pair k)`: Inserta un par `k` al minHeap.
 - `extractMin()`: Extrae el menor elemento del minHeap.
