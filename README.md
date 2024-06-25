@@ -18,6 +18,40 @@ El repositorio contiene los siguientes archivos:
 
 ## Archivos y Descripción
 
+
+### structures.h
+
+Este archivo define las estructuras necesarias para representar grafos y aristas:
+- `Node`: Representa nodo con su key y guarda si fue explorado.
+- `Edge`: Representa una arista del grafo con un peso y dos nodos.
+- `Graph`: Representa un set de aristas.
+- `createGraph`: operación que crea un grafo.
+- `addEdge`: operación que agrega un Edge al grafo.
+- `minHeap`: una clase que implementa las siguientes operaciones
+
+## minHeap
+- `minHeap(int capacity)`: Constructor, crea un minHeap.
+- `insert(Pair k)`: Inserta un par `k` al minHeap.
+- `extractMin()`: Extrae el menor elemento del minHeap.
+- `heapify(int i)`: Llamada recursiva para mantener la forma del Heap en un sub árbol
+- `heapifyUp(int i)`: Llamada recursiva para mover un elemento del Heap a un sub árbol mas alto, si es que es necesario.
+- `printHeap()`: Printea el Heap
+- `decreaseKey(int idx, int new_value)`: Disminuye el valor de la distancia del elemento del `index` al `new_value`.
+- `empty()`: Revisa si el Heap esta vacio.
+
+
+### structures.cpp
+
+Este archivo contiene la implementación de los métodos definidos en `structures.h`.
+
+### main.cpp
+
+contiene la lógica para generar grafos aleatorios y medir los tiempos de ejecución del algoritmo de Dijkstra utilizando minHeap.
+
+### d_heap.cpp
+
+Este archivo implementa el algoritmo de Dijkstra utilizando minHeap.
+
 ### FibonacciHeap.h
 
 Este archivo contiene la definición de la estructura de nodos y la clase `FibonacciHeap` que implementa las siguientes operaciones:
@@ -34,16 +68,16 @@ Este archivo contiene la definición de la estructura de nodos y la clase `Fibon
 
 Este archivo contiene la implementación de los métodos definidos en `FibonacciHeap.h`.
 
-### structures.h
+### structuresfib.h
 
 Este archivo define las estructuras necesarias para representar grafos y aristas:
 
 - `Edge`: Representa una arista del grafo con un peso y dos nodos.
 - `Graph`: Representa un grafo con nodos y aristas. Proporciona métodos para generar un grafo conexo y agregar aristas.
 
-### structures.cpp
+### structuresfib.cpp
 
-Este archivo contiene la implementación de los métodos definidos en `structures.h`.
+Este archivo contiene la implementación de los métodos definidos en `structuresfib.h`.
 
 ### d_fibonacci.cpp
 
@@ -73,7 +107,7 @@ El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra uti
 makeheap
 ```
 
-El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando minheap, y registrará los tiempos de ejecución.
+El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando minHeap, y registrará los tiempos de ejecución.
 
 ### Análisis de Resultados
 
