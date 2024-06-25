@@ -23,7 +23,7 @@ tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph){
     Node root_node = Node(root);
     Pair root_pair = make_tuple(0, root_node);
     heap.insert(root_pair);
-    root_node.rep = &root_pair;
+    //root_node.rep = &root_pair;
 
    
 
@@ -32,7 +32,7 @@ tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph){
         if (i != root){
             Node node_i = Node(i);
             Pair the_pair = make_tuple(inf,node_i);
-            node_i.rep = &the_pair;
+            //node_i.rep = &the_pair;
             nodes.push_back(node_i);
             heap.insert(the_pair);
         }
@@ -57,7 +57,8 @@ tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph){
             //si el nodo1 del edge es igual al nodo en the_shortest
             if (get<0>(edge) == get<1>(the_shortest).key){
                 //cout << "caso1 funciona" << endl;
-                Pair p = *nodes[get<1>(edge)].rep;
+                //Pair p = *nodes[get<1>(edge)].rep;
+                Pair p = heap.getPair(nodes[get<1>(edge)].heap_place);
                 //cout << "caso1 crea p" << endl;
                 if (distances[get<1>(edge)]> distances[get<0>(edge)] + get<2>(edge)){
                     heap.decreaseKey(get<1>(p).heap_place, get<2>(edge));
@@ -72,7 +73,8 @@ tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph){
             //si el nodo2 del edge es igual al nodo en the_shortest
             else if (get<1>(edge) == get<1>(the_shortest).key){
                 //cout << "caso 2 funciona" << endl;
-                Pair p = *nodes[get<0>(edge)].rep;
+                //Pair p = *nodes[get<0>(edge)].rep;
+                Pair p = heap.getPair(nodes[get<0>(edge)].heap_place);
                 if (distances[get<0>(edge)] > distances[get<1>(edge)] + get<2>(edge)){
                     heap.decreaseKey(get<1>(p).heap_place, get<2>(edge));
                     distances[get<0>(edge)] = distances[get<1>(edge) + get<2>(edge)];
@@ -85,6 +87,5 @@ tuple<vector<double>, vector<int>> dijkstra_heap(int root, Graph graph){
     }
 
     //6
-    cout << "final" << endl;
     return make_tuple(distances, prevs);
 };

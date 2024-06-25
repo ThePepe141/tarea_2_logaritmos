@@ -99,12 +99,12 @@ Este archivo contiene los resultados de las pruebas realizadas, con los tiempos 
 Para ejecutar el programa, usa el siguiente comando:
 
 ```sh
-makefib
+make runfib
 ```
 El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando colas de Fibonacci, y registrará los tiempos de ejecución.
 
 ```sh
-makeheap
+make runheap
 ```
 
 El programa generará grafos aleatorios, ejecutará el algoritmo de Dijkstra utilizando minHeap, y registrará los tiempos de ejecución.

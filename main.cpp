@@ -24,11 +24,8 @@ int main() {
             } // No se pueden tener más aristas que v*(v-1)/2 (grafo completo)
             for (int i = 0; i < grafnumber; ++i) {
                 Graph g = createGraph(v,e);
-
                 auto start = chrono::high_resolution_clock::now();
-                cout << "probemos dijkstra" << endl;
                 dijkstra_heap(0, g);
-                cout << "dijkstra funciona" << endl;
                 auto end = chrono::high_resolution_clock::now();
                 chrono::duration<double> duration = end - start;
                 execution_times.push_back(duration.count());
@@ -43,20 +40,3 @@ int main() {
     results.close();
     return 0;
 }
-
-/*
-int main(){
-    cout<<"Ingrese el número de vértices y aristas del grafo \n";
-    int i,j;
-    cout<<"numero de vertices 2^i \n";
-    cout<<"numero de aristas 2^j \n";
-    cout<<"i: \n";
-    cin >> i;
-    cout<<"j: \n";
-    cin >> j;
-    
-    Graph g = createGraph(i,j);
-    cout << "grafo creado" << endl;
-    return 0;
-}
-*/

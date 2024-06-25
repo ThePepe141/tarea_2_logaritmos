@@ -201,6 +201,10 @@ bool minHeap::empty(){
     return size==0;
 }
 
+Pair minHeap::getPair(int idx){
+    return heap[idx];
+}
+
 //----------------------------------------------------
 /*
 void printGraph(Graph &g){

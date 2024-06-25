@@ -15,10 +15,9 @@ using namespace std;
 class Node{
     public:
 
-    //varaibles
+    //variables
     int key = -1;
-    tuple<double, Node> *rep; // = &(make_tuple(0, Node()));
-    bool explored = false;
+    //tuple<double, Node> *rep; // = &(make_tuple(0, Node()));
     int heap_place = -1;
 
 
@@ -78,6 +77,8 @@ public:
     void decreaseKey(int idx, int new_value);
     //bool to know if the heap is empty
     bool empty();
+    //return the pair on the idx in the heap
+    Pair getPair(int idx);
 };
 
 
